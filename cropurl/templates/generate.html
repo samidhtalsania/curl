@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	
+	<head>
+		<title>
+		CropURL - cut down the size of your URLs
+		</title>
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/b.css">
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/custom.css">
+		<script type="text/javascript" src="{{ STATIC_URL }}js/b.js"></script>
+
+	</head>
+	
+	<body>
+		<div class="wrap">
+		<div class="header">
+			<h5 id="phr" style="color:#fff;">cut down the size of your URLs</h5>
+		</div>
+		<div class="container main">
+			<form action="/generate/" method="post">
+				<!-- {% if error %}
+					<p style="color:red;"> please submit the URL in its correct form </p>
+				{% endif %} -->
+				<div class="input-append">
+					
+					{% csrf_token %}
+					{{ form.urlField }}
+					
+					<button type="submit" class="btn">Crop!</button>
+				</div>
+				
+				{% if form.errors or error%}
+					
+					<div class="error">
+						
+							<p class="text-error"> {{ form.urlField.errors }} </p>
+							<p class="text-error"> {{ error }} </p>
+						
+					
+					</div>
+				{% endif %}
+
+
+				
+			</form>
+		</div>
+		</div>
+				
+	</body>
+</html>
